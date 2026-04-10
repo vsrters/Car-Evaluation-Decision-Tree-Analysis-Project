@@ -1,0 +1,2 @@
+# Car-Evaluation-Decision-Tree-Analysis-Project
+本项目基于汽车评估数据集（Car Evaluation Dataset），使用决策树分类算法和Bagging集成学习方法，对汽车的等级进行分类预测。项目对比了单个最优决策树与Bagging集成模型的性能差异，展示了集成学习在提升模型准确率和降低过拟合方面的优势。
