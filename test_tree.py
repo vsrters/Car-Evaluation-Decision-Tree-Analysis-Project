@@ -1,4 +1,5 @@
 # 导入所需依赖库
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split, GridSearchCV
@@ -10,7 +11,11 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 # ------------------------------------------------------------------------------
 # 1. 读取数据集
 # ------------------------------------------------------------------------------
-df = pd.read_csv('car_evaluation.csv', header=None)
+# 获取脚本所在目录的绝对路径
+script_dir = os.path.dirname(os.path.abspath(__file__))
+# 构建数据文件的路径
+data_path = os.path.join(script_dir, 'car_evaluation.csv')
+df = pd.read_csv(data_path, header=None)
 col_names = ['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'class']
 df.columns = col_names
 
@@ -65,7 +70,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 # ------------------------------------------------------------------------------
 # 先找到单个决策树的最优参数（max_depth=4固定）
 base_tree = DecisionTreeClassifier(
-    max_depth=3,
+    max_depth=4,
     random_state=42
 )
 
@@ -168,5 +173,7 @@ plot_tree(
     rounded=True,
     fontsize=8
 )
-plt.savefig('car_evaluation_best_single_tree.png', bbox_inches='tight')
+# 构建图片保存路径
+image_path = os.path.join(script_dir, 'car_evaluation_best_single_tree.png')
+plt.savefig(image_path, bbox_inches='tight')
 plt.show()
